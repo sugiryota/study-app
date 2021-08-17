@@ -16,7 +16,9 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = Item::where('user_id',Auth::user()->id);
+        $items = Item::orderBy('created_at','desc')->get();
+        return view('items.index',compact('items'));
+        
     }
 
     /**
