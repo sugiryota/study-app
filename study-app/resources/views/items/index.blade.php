@@ -4,8 +4,8 @@
 <a href="{{ url('item/create') }}" >投稿</a>
 <h2>投稿されたもの</h2>
 @foreach($items as $item)
+<a href="{{ action('ItemsController@show', $item->id) }}">
 <div>{{ $item->name }}</div>
-<div>{{ $item->url }}</div>
-<div>{{ $item->text }}</div>
+</a>
 @endforeach
 @endsection

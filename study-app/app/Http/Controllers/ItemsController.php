@@ -56,6 +56,10 @@ class ItemsController extends Controller
         $items->save();
         return redirect('/');
     }
+    public function show($id) {
+        $item = Item::findOrFail($id);
+        return view('items.show')->with('item', $item);
+    }
 
     /**
      * Display the specified resource.
