@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', 'ItemsController@index');
-Route::resource('/item','ItemsController',['only' =>['create','store','show']]);
+Route::resource('/item','ItemsController',['only' =>['create','store','show','destroy']]);
 
 
 Auth::routes();

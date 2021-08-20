@@ -60,6 +60,11 @@ class ItemsController extends Controller
         $item = Item::findOrFail($id);
         return view('items.show')->with('item', $item);
     }
+    public function destroy($id){
+        $item = Item::findOrFail($id);
+        $item->delete();
+        return redirect('/');
+    }
 
     /**
      * Display the specified resource.
