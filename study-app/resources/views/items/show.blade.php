@@ -8,3 +8,4 @@
     削除
   </button>
 </form>
+<a href="{{ action('ItemsController@edit', $item->id) }}">編集</a>

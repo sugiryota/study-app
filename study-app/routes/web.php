@@ -15,9 +15,9 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', 'ItemsController@index');
-Route::resource('/item','ItemsController',['only' =>['create','store','show','destroy']]);
+Route::resource('/item','ItemsController',['only' =>['create','store','show','destroy','edit','update']]);
 
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

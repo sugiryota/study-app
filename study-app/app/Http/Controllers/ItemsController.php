@@ -65,6 +65,28 @@ class ItemsController extends Controller
         $item->delete();
         return redirect('/');
     }
+    public function edit($id){
+        $items = Item::find($id);
+        return view('items.edit')->with('item', $items);
+    }
+    public function update(Request $request,$id){
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'url' => 'required',
+            'text' => 'required',
+        ]);
+        if($validator->fails()){
+            return redirect('item/'.$id.'/edit')
+                ->withInput()
+                ->withErrors($validator);
+        }
+        $items = Item::find($id);
+        $items->name = $request->name;
+        $items->url = $request->url;
+        $items->text = $request->text;
+        $items->save();
+        return redirect('/');
+    }
 
     /**
      * Display the specified resource.
