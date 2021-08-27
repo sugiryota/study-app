@@ -8,4 +8,9 @@
 <div>{{ $item->name }}</div>
 </a>
 @endforeach
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    {{ $items->links('pagination::bootstrap-4') }}
+  </div>
+</div>
 @endsection
