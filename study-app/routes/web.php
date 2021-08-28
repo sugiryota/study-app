@@ -19,5 +19,6 @@ Route::resource('/item','ItemsController',['only' =>['create','store','show','de
 
 
 Auth::routes();
+Route::get('/home','ItemsController@index')->name('home');
 
 

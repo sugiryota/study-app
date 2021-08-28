@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use Validator;
+use Auth;
 
 
 class ItemsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +20,7 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = Item::orderBy('created_at','desc')->paginate(5);
+        $items = Item::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(5);
         return view('items.index',compact('items'));
         
     }
@@ -50,6 +54,7 @@ class ItemsController extends Controller
                 ->withErrors($validator);
         }
         $items = new Item;
+        $items->user_id = Auth::user()->id;
         $items->name = $request->name;
         $items->url = $request->url;
         $items->text = $request->text;
@@ -66,7 +71,7 @@ class ItemsController extends Controller
         return redirect('/');
     }
     public function edit($id){
-        $items = Item::find($id);
+        $items = Item::where('user_id',Auth::user()->id)->find($id);
         return view('items.edit')->with('item', $items);
     }
     public function update(Request $request,$id){
@@ -80,7 +85,7 @@ class ItemsController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        $items = Item::find($id);
+        $items = Item::where('user_id',Auth::user()->id)->find($id);
         $items->name = $request->name;
         $items->url = $request->url;
         $items->text = $request->text;
