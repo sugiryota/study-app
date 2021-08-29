@@ -53,11 +53,20 @@ class ItemsController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
+
+        $file = $request ->file('item_img');
+        if(!empty($file)){
+            $filename=$file->getClientOriginalName();
+            $move = $file->move('../public/upload/',$filename);
+        }else{
+            $filename="";
+        }
         $items = new Item;
         $items->user_id = Auth::user()->id;
         $items->name = $request->name;
         $items->url = $request->url;
         $items->text = $request->text;
+        $items->item_img = $filename;
         $items->save();
         return redirect('/');
     }
@@ -85,10 +94,17 @@ class ItemsController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
+        $file = $request ->file('item_img');
         $items = Item::where('user_id',Auth::user()->id)->find($id);
         $items->name = $request->name;
         $items->url = $request->url;
         $items->text = $request->text;
+        if(!empty($file)){
+            $filename=$file->getClientOriginalName();
+            $move = $file->move('../public/upload/',$filename);
+            $items->item_img = $filename;
+        }else{
+        }
         $items->save();
         return redirect('/');
     }

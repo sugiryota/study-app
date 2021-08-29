@@ -1,3 +1,10 @@
+<div>
+  @if ($item->item_img == "")
+  {{-- <img src= "/upload/751391-3.png" width="100"> --}}
+  @else 
+  <img src= "/upload/{{ $item->item_img }}" width="100"> 
+  @endif 
+</div>
 <div>{{ $item->name }}</div>
 <div>{{ $item->url }}</div>
 <div>{{ $item->text }}</div>

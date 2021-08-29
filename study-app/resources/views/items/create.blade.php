@@ -18,6 +18,12 @@
           <input type="text" name="name" value="{{ old('name') }}" class="form-control">
         </div>
         <div class="card-title">
+          画像
+        </div>
+        <div class="col-sm-6">
+          <input type="file" name="item_img"  >
+        </div>
+        <div class="card-title">
           URL
         </div>
         <div class="col-sm-6">

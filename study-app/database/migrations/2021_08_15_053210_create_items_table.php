@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('url');
             $table->text('text');
+            $table->string('item_img');
             $table->timestamps();
         });
     }
